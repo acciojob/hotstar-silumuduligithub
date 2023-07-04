@@ -29,25 +29,22 @@ public class UserService {
         return newUser.getId();
     }
 
-    public Integer getAvailableCountOfWebSeriesViewable(Integer userId){
+    public Integer getAvailableCountOfWebSeriesViewable(Integer userId) {
 
         //Return the count of all webSeries that a user can watch based on his ageLimit and subscriptionType
         //Hint: Take out all the Webseries from the WebRepository
         User user = userRepository.findById(userId).get();
-        Integer count = 0;
+        Integer age = 0;
+        if (user.getAge() <= 18) age = 18;
+        else age = Integer.MAX_VALUE;
         List<WebSeries> webSeriesList = webSeriesRepository.findAll();
-        for(WebSeries webSeries : webSeriesList){
-            if(user.getAge() >= webSeries.getAgeLimit() && user.getSubscription().getSubscriptionType().equals(SubscriptionType.ELITE)){
-                count++;
-            }else if(user.getAge() >= webSeries.getAgeLimit() && user.getSubscription().getSubscriptionType().equals(SubscriptionType.PRO)){
-                count++;
-            }
-            else{
-                count++;
-            }
+
+        Integer count = 0;
+
+        for (WebSeries webSeries : webSeriesList) {
+            if (webSeries.getAgeLimit() <= age) count++;
         }
         return count;
     }
-
 
 }

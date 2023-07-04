@@ -64,6 +64,7 @@ public class SubscriptionService {
         }
         subscription.setTotalAmountPaid(amount);
         subscription.setUser(user);
+
        subscriptionRepository.save(subscription);
         return amount;
     }
