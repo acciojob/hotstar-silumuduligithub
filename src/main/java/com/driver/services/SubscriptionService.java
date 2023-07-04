@@ -66,7 +66,7 @@ public class SubscriptionService {
         subscription.setUser(user);
 
        subscriptionRepository.save(subscription);
-        return amount;
+        return amount - prevFair;
     }
 
     public Integer calculateTotalRevenueOfHotstar(){
