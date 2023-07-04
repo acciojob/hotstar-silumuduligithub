@@ -57,10 +57,10 @@ public class SubscriptionService {
         int amount = 0;
         if(subscription.getSubscriptionType().equals(SubscriptionType.BASIC)){
             subscription.setSubscriptionType(SubscriptionType.PRO);
-            amount = 300 + (50 * subscription.getNoOfScreensSubscribed());
+            amount =prevFair + 300 + (50 * subscription.getNoOfScreensSubscribed());
         }else{
             subscription.setSubscriptionType(SubscriptionType.ELITE);
-            amount = 200 + (100 * subscription.getNoOfScreensSubscribed());
+            amount = prevFair + 200 + (100 * subscription.getNoOfScreensSubscribed());
         }
         subscription.setTotalAmountPaid(amount);
         subscription.setUser(user);
